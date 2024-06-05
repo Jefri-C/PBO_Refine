@@ -20,4 +20,8 @@ axiosInstance.interceptors.request.use(
     }
 );
 
+axiosInstance.defaults.headers.common = {
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
+};
+
 export default axiosInstance;

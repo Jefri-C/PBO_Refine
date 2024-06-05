@@ -151,6 +151,14 @@ export const LoginPage: React.FC<LoginProps> = ({
       .then((response) => {
         // Handle response
         console.log("Response:", response);
+        if (response.ok) {
+          // Redirect to dashboard upon successful login
+          window.location.href = "/dashboard";
+        } else {
+          // Handle unsuccessful login
+          console.error("Login failed.");
+          // Additional error handling if needed
+        }
       })
       .catch((error) => {
         // Handle error

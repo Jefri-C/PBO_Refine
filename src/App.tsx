@@ -69,6 +69,7 @@ function App() {
               dataProvider={dataProvider("https://pbouas.pythonanywhere.com", axiosInstance)}
                 // dataProvider={dataProvider("https://my-json-server.typicode.com/Jefri-C/Fake-REST-API")}
               notificationProvider={useNotificationProvider}
+              // @ts-ignore
               authProvider={authProvider}
               routerProvider={routerBindings}
               resources={[

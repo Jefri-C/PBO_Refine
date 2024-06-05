@@ -1,17 +1,11 @@
 import axios from "axios";
 
-// Create a custom axios instance
-const axiosInstance = axios.create({
-    baseURL: "http://127.0.0.1:8000/api", // Replace with your API URL
-});
-
-// Function to add token to requests
+const axiosInstance = axios.create();
 axiosInstance.interceptors.request.use(
     (config) => {
-        // Retrieve the token from localStorage
-        const token = localStorage.getItem('access_token');
+        const token = localStorage.getItem("token");
         if (token) {
-            config.headers.Authorization = `Bearer ${token}`;
+            config.headers["Authorization"] = `Bearer ${token}`;
         }
         return config;
     },
@@ -19,9 +13,5 @@ axiosInstance.interceptors.request.use(
         return Promise.reject(error);
     }
 );
-
-axiosInstance.defaults.headers.common = {
-    Authorization: `Bearer ${localStorage.getItem("token")}`,
-};
 
 export default axiosInstance;

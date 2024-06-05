@@ -1,59 +1,27 @@
-import { AuthBindings } from "@refinedev/core";
+import { axiosInstance } from "@refinedev/simple-rest";
 
-export const TOKEN_KEY = "refine-auth";
-
-export const authProvider: AuthBindings = {
-  login: async ({ username, email, password }) => {
-    if ((username || email) && password) {
-      localStorage.setItem(TOKEN_KEY, username);
-      return {
-        success: true,
-        redirectTo: "/",
-      };
+export const authProvider = {
+  login: async ({ email, password }) => {
+    // Implement your login logic here
+    const response = await axiosInstance.post("/login", { email, password });
+    localStorage.setItem("token", response.data.token);
+    return Promise.resolve();
+  },
+  logout: () => {
+    localStorage.removeItem("token");
+    return Promise.resolve();
+  },
+  checkError: (error) => {
+    if (error.status === 401) {
+      return Promise.reject();
     }
-
-    return {
-      success: false,
-      error: {
-        name: "LoginError",
-        message: "Invalid username or password",
-      },
-    };
+    return Promise.resolve();
   },
-  logout: async () => {
-    localStorage.removeItem(TOKEN_KEY);
-    return {
-      success: true,
-      redirectTo: "/login",
-    };
+  checkAuth: () => {
+    return localStorage.getItem("token") ? Promise.resolve() : Promise.reject();
   },
-  check: async () => {
-    const token = localStorage.getItem(TOKEN_KEY);
-    if (token) {
-      return {
-        authenticated: true,
-      };
-    }
-
-    return {
-      authenticated: false,
-      redirectTo: "/login",
-    };
-  },
-  getPermissions: async () => null,
-  getIdentity: async () => {
-    const token = localStorage.getItem(TOKEN_KEY);
-    if (token) {
-      return {
-        id: 1,
-        name: "SuperAdmin",
-        avatar: "https://i.pravatar.cc/300?img=57",
-      };
-    }
-    return null;
-  },
-  onError: async (error) => {
-    console.error(error);
-    return { error };
-  },
+  getPermissions: () => Promise.resolve(),
+  // Add the missing methods
+  check: () => Promise.resolve(),
+  onError: (error) => Promise.reject(error),
 };

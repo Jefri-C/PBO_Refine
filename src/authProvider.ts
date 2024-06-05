@@ -1,5 +1,18 @@
 import { axiosInstance } from "@refinedev/simple-rest";
 
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      config.headers["Authorization"] = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 export const authProvider = {
   login: async ({ username, password }) => {
     // Implement your login logic here

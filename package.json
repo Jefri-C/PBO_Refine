@@ -35,7 +35,7 @@
   },
   "scripts": {
     "dev": "refine dev",
-    "build": "tsc && refine build",
+    "build": "refine build",
     "preview": "refine start",
     "refine": "refine"
   },

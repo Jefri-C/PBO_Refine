@@ -55,8 +55,9 @@ import {
 import { ForgotPassword } from "./pages/forgotPassword";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
-import axiosInstance from "./axios"; 
+
 import { DashboardPage } from "./pages/dashboard";
+import { axiosInstance } from "@refinedev/simple-rest";
 
 function App() {
   return (

@@ -57,6 +57,7 @@ export const SaleEdit = () => {
         optionLabel: "name",
         optionValue: "id",
         queryOptions: {
+            // @ts-ignore
             select: (response) => response.data, // Extract only the data array
         },
     });
@@ -73,6 +74,7 @@ export const SaleEdit = () => {
     };
 
     const calculateGrandTotal = () => {
+        // @ts-ignore
         const salesDetailsValues = formProps.form.getFieldsValue().details;
         if (!salesDetailsValues) {
             return;
@@ -101,6 +103,7 @@ export const SaleEdit = () => {
     }
 
     // Extract the data from the queryResult
+    // @ts-ignore
     const extractedData = queryResult.data?.data.data;
     const detailsData = extractedData.details;
 

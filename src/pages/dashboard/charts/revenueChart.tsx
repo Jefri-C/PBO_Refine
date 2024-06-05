@@ -82,6 +82,7 @@ export const SalesRevenueChart: React.FC<RevenueChartProps> = ({ dateRange }) =>
                 <XAxis dataKey="date" />
                 <YAxis />
                 <Tooltip
+                    // @ts-ignore
                     content={<CustomTooltip />}
                 />
                 <Area type="monotone" dataKey="total_amount" stroke="lightblue" fillOpacity={1} fill="url(#colorGrad)" />

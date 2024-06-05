@@ -26,6 +26,7 @@ export const SaleList = () => {
     const invalidate = useInvalidate();
 
     const rawData = tableProps.dataSource || { data: [] };
+    // @ts-ignore
     const data = rawData.data.map((item, index) => ({
         ...item,
         autoIncrementId: index + 1,

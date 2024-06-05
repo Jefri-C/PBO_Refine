@@ -28,6 +28,7 @@ export const Pred = () => {
         optionLabel: "name",
         optionValue: "name",
         queryOptions: {
+            // @ts-ignore
             select: (response) => response.data,
         },
     });

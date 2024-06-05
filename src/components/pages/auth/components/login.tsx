@@ -141,7 +141,7 @@ export const LoginPage: React.FC<LoginProps> = ({
     // Custom logic for form submission, e.g., sending data to a different URL
     console.log("Form values:", values);
     // Example: Submit form data to a different URL
-    fetch("https://pbouas.pythonanywhere.com/login", {
+    fetch("https://pbouas.pythonanywhere.com/api/login", {
       method: "POST",
       body: JSON.stringify(values),
       headers: {

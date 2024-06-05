@@ -9,7 +9,7 @@ export const Login = () => {
         <ThemedTitleV2 collapsed={false} text="TokoToko" icon={<AppIcon />} />
       }
       formProps={{
-        initialValues: { email: "superadmin@demo.com", password: "superadmin" },
+        initialValues: { username: "admin", password: "admin" },
       }}
     />
   );

@@ -1,9 +1,9 @@
 import { axiosInstance } from "@refinedev/simple-rest";
 
 export const authProvider = {
-  login: async ({ email, password }) => {
+  login: async ({ username, password }) => {
     // Implement your login logic here
-    const response = await axiosInstance.post("/login", { email, password });
+    const response = await axiosInstance.post("/login", { username, password });
     localStorage.setItem("token", response.data.token);
     return Promise.resolve();
   },

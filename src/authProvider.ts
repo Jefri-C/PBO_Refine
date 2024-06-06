@@ -15,7 +15,6 @@ axiosInstance.interceptors.request.use(
 
 export const authProvider = {
   login: async ({ username, password }) => {
-    // Implement your login logic here
     const response = await axiosInstance.post("/login", { username, password });
     localStorage.setItem("token", response.data.token);
     return Promise.resolve();

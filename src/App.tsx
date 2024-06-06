@@ -130,6 +130,7 @@ function App() {
                   element={
                     <Authenticated
                       key="authenticated-inner"
+                      appendCurrentPathToQuery={false}
                       fallback={<CatchAllNavigate to="/login" />}
                     >
                       <ThemedLayoutV2

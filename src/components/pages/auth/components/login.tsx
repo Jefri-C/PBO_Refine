@@ -36,11 +36,12 @@ import {
 import { useNavigate } from "react-router-dom";
 
 type LoginProps = LoginPageProps<LayoutProps, CardProps, FormProps>;
-/**
- * **refine** has a default login page form which is served on `/login` route when the `authProvider` configuration is provided.
- *
- * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/antd-auth-page/#login} for more details.
- */
+
+// Define the setAuthToken function globally
+const setAuthToken = (token: string) => {
+  localStorage.setItem('auth_token', token);
+};
+
 export const LoginPage: React.FC<LoginProps> = ({
   providers,
   registerLink,
@@ -140,35 +141,45 @@ export const LoginPage: React.FC<LoginProps> = ({
 
   const navigate = useNavigate();
 
-  const handleSubmit = (values) => {
-    // Custom logic for form submission, e.g., sending data to a different URL
-    console.log("Form values:", values);
-    // Example: Submit form data to a different URL
-    fetch("https://pbouas.pythonanywhere.com/api/login", {
-      method: "POST",
-      body: JSON.stringify(values),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        // Handle response
-        console.log("Response:", response);
-        if (response.ok) {
-          // Redirect to dashboard upon successful login using React Router
-          navigate("/");
-        } else {
-          // Handle unsuccessful login
-          console.error("Login failed.");
-          // Additional error handling if needed
-        }
-      })
-      .catch((error) => {
-        // Handle error
-        console.error("Error:", error);
+  const handleSubmit = async (values) => {
+    try {
+      // Sending POST request to login endpoint
+      const response = await fetch("https://pbouas.pythonanywhere.com/api/login", {
+        method: "POST",
+        body: JSON.stringify(values),
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
-  };
 
+      // Handling response
+      if (response.ok) {
+        // If response status is OK (200), parse response JSON
+        const data = await response.json();
+        console.log("Login successful:", data);
+
+        // Retrieve the token from the response
+        const token = data.data.token;
+        console.log(token);
+
+        // Call the setAuthToken function to set the token in localStorage
+        setAuthToken(token);
+
+        // Perform actions based on response data, e.g., redirecting to dashboard
+        navigate("/");
+      } else {
+        // If response status is not OK, log error message
+        console.error("Login failed:", response.statusText);
+
+        // Additional error handling if needed
+      }
+    } catch (error) {
+      // Catch any errors that occur during the fetch request
+      console.error("Error during login:", error);
+
+      // Additional error handling if needed
+    }
+  };
 
   const CardContent = (
     <Card

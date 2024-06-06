@@ -61,13 +61,6 @@ import { axiosInstance } from "@refinedev/simple-rest";
 import { useState, useEffect } from "react";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    if (localStorage.getItem('token')) {
-      setIsLoggedIn(true);
-    }
-  }, []);
 
   return (
     <DevtoolsProvider>

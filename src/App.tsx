@@ -77,7 +77,6 @@ function App() {
           <AntdApp>
             <Refine
               dataProvider={dataProvider("https://pbouas.pythonanywhere.com", axiosInstance)}
-                // dataProvider={dataProvider("https://my-json-server.typicode.com/Jefri-C/Fake-REST-API")}
               notificationProvider={useNotificationProvider}
               // @ts-ignore
               authProvider={authProvider}
@@ -139,7 +138,7 @@ function App() {
                   element={
                     <Authenticated
                       key="authenticated-inner"
-                      fallback={<CatchAllNavigate to="/login" />}
+                      // fallback={<CatchAllNavigate to="/login" />}
                     >
                       <ThemedLayoutV2
                         Header={() => <Header sticky />}

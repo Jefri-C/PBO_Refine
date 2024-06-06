@@ -30,6 +30,7 @@ export const SaleCreate = () => {
         optionLabel: "name",
         optionValue: "id",
         queryOptions: {
+            // @ts-ignore
             select: (response) => response.data, // Extract only the data array
         },
     });

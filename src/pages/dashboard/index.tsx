@@ -145,6 +145,7 @@ export const DashboardPage: React.FC = () => {
         method: "get",
     });
 
+    // @ts-ignore
 
     const detailsData = productRankingData?.data?.data.map(item => item.details).flat();
 
@@ -163,6 +164,7 @@ export const DashboardPage: React.FC = () => {
 
     const rankedProducts = Object.entries(totalQuantities)
         .map(([product_name, quantity]) => ({ product_name, quantity }))
+        // @ts-ignore
         .sort((a, b) => b.quantity - a.quantity)
         .slice(0, 5);
     

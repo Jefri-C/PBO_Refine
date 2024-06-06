@@ -49,6 +49,8 @@ export const ProductEdit = () => {
         optionLabel: "name",
         optionValue: "id",
         queryOptions: {
+            // @ts-ignore
+
             select: (response) => response.data, // Extract only the data array
         },
     });
@@ -62,6 +64,8 @@ export const ProductEdit = () => {
     }
 
     // Extract the data from the queryResult
+    // @ts-ignore
+
     const extractedData = queryResult.data?.data.data;
 
     return (

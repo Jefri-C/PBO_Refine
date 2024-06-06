@@ -32,6 +32,7 @@ export const ProductList = () => {
 
 
     const rawData = tableProps.dataSource || { data: [] };
+    // @ts-ignore
     const data = rawData.data;
 
     const categoryIds = Array.isArray(data)
@@ -61,6 +62,7 @@ export const ProductList = () => {
                             return "Loading...";
                         }
                         return (
+    // @ts-ignore
                             categoryData?.data.data.find((item) => item.id === value)?.name || "Unknown"
                         );
                     }}

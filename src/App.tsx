@@ -138,7 +138,7 @@ function App() {
                   element={
                     <Authenticated
                       key="authenticated-inner"
-                      // fallback={<CatchAllNavigate to="/login" />}
+                      fallback={<CatchAllNavigate to="/login" />}
                     >
                       <ThemedLayoutV2
                         Header={() => <Header sticky />}

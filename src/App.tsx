@@ -61,7 +61,6 @@ import { axiosInstance } from "@refinedev/simple-rest";
 import { useState, useEffect } from "react";
 
 function App() {
-
   return (
     <DevtoolsProvider>
     <BrowserRouter>

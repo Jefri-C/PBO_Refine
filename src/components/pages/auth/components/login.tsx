@@ -33,6 +33,7 @@ import {
   FormProps,
   theme,
 } from "antd";
+import { useNavigate } from "react-router-dom";
 
 type LoginProps = LoginPageProps<LayoutProps, CardProps, FormProps>;
 /**
@@ -137,6 +138,8 @@ export const LoginPage: React.FC<LoginProps> = ({
     return null;
   };
 
+  const navigate = useNavigate();
+
   const handleSubmit = (values) => {
     // Custom logic for form submission, e.g., sending data to a different URL
     console.log("Form values:", values);
@@ -152,8 +155,8 @@ export const LoginPage: React.FC<LoginProps> = ({
         // Handle response
         console.log("Response:", response);
         if (response.ok) {
-          // Redirect to dashboard upon successful login
-          window.location.href = "/";
+          // Redirect to dashboard upon successful login using React Router
+          navigate("/");
         } else {
           // Handle unsuccessful login
           console.error("Login failed.");

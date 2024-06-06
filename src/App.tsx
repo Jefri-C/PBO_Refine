@@ -134,7 +134,7 @@ function App() {
               }}
             >
               <Routes>
-                {/* <Route
+                <Route
                   element={
                     <Authenticated
                       key="authenticated-inner"
@@ -155,7 +155,7 @@ function App() {
                       </ThemedLayoutV2>
                     </Authenticated>
                   }
-                > */}
+                >
                     <Route index element={<DashboardPage />} />
 
                   <Route path="/categories">
@@ -177,7 +177,7 @@ function App() {
                     <Route path="show/:id" element={<SaleShow />} />
                   </Route>
                   <Route path="*" element={<ErrorComponent />} />
-                {/* </Route> */}
+                </Route>
                 <Route
                   element={
                     <Authenticated

@@ -25,10 +25,12 @@ export const ProductEdit = () => {
 
     const { mutate } = useCustomMutation();
 
+    const API_URL = "https://pbouas.pythonanywhere.com/api"
+
     const handleOnFinish = (values: IProduct) => {
         mutate(
             {
-                url: `product/update`,
+                url: `${API_URL}/product/update`,
                 method: "post",
                 values,
             },

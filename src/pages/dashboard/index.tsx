@@ -376,7 +376,7 @@ return (
         </Row>
 
         <Row gutter={24} style={{ paddingTop: "24px" }}>
-            <Col span={6}>
+            <Col span={8}>
                 <CardWithContent
                     icon={
                         <RiseOutlined
@@ -419,7 +419,7 @@ return (
                     </ul>
                 </CardWithContent>
             </Col>
-            <Col span={9}>
+            {/* <Col span={9}>
                 <CardWithContent
                     icon={
                         <ShoppingOutlined
@@ -430,7 +430,7 @@ return (
                         />
                     }
                     title={"Recent Sales"}>
-                    {/* <Table dataSource={recentSalesData} rowKey="id">
+                    <Table dataSource={recentSalesData} rowKey="id">
                         <Table.Column
                             title={"No."}
                             render={(_, __, index) => index + 1}
@@ -446,10 +446,10 @@ return (
                                 />
                             )}
                         />
-                    </Table> */}
+                    </Table>
                 </CardWithContent>
-            </Col>
-            <Col span={9}>
+            </Col> */}
+            <Col span={16}>
                 <CardWithContent
                     icon={
                         <RobotOutlined

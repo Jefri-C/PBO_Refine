@@ -20,12 +20,14 @@ export const CategoryEdit = () => {
     warnWhenUnsavedChanges: false,
   });
 
+  const API_URL = "https://pbouas.pythonanywhere.com/api"
+
   const { mutate } = useCustomMutation();
 
   const handleOnFinish = (values: ICategory) => {
     mutate(
       {
-        url: `category/update`,
+        url: `${API_URL}/category/update`,
         method: "post",
         values,
       },

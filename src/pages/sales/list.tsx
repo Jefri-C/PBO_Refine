@@ -70,7 +70,7 @@ export const SaleList = () => {
                                 }}
                                 successNotification={(data, id, resource) => {
                                     return {
-                                        message: `Successfully deleted category`,
+                                        message: `Successfully deleted sales`,
                                         description: "Success",
                                         type: "success",
                                     };

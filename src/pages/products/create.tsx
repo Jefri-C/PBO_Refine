@@ -14,7 +14,7 @@ export const ProductCreate = () => {
         },
         successNotification: (data, values, resource) => {
             return {
-                message: "The category has been created successfully.",
+                message: "The product has been created successfully.",
                 description: "Success",
                 type: "success",
             };

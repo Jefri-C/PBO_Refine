@@ -33,10 +33,12 @@ export const SaleEdit = () => {
 
     const { mutate } = useCustomMutation();
 
+    const API_URL = "https://pbouas.pythonanywhere.com/api"
+
     const handleOnFinish = (values: ISales) => {
         mutate(
             {
-                url: `sale/update`,
+                url: `${API_URL}/sale/update`,
                 method: "post",
                 values,
             },
@@ -44,7 +46,7 @@ export const SaleEdit = () => {
                 onSuccess: () => {
                     notification.success({
                         message: "Success",
-                        description: "The product has been edited successfully.",
+                        description: "The sales has been edited successfully.",
                     });
                     navigate("/sales");
                 },

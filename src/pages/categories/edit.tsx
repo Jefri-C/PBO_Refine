@@ -51,6 +51,7 @@ export const CategoryEdit = () => {
   }
 
   // Extract the data from the queryResult
+  // @ts-ignore
   const extractedData = queryResult.data?.data.data;
 
   return (

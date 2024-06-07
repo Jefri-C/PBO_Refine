@@ -68,7 +68,7 @@ function App() {
         {/* <ColorModeContextProvider> */}
           <AntdApp>
             <Refine
-              dataProvider={dataProvider("https://pbouas.pythonanywhere.com", axiosInstance)}
+              dataProvider={dataProvider("https://pbouas.pythonanywhere.com/api", axiosInstance)}
               notificationProvider={useNotificationProvider}
               // @ts-ignore
               authProvider={authProvider}

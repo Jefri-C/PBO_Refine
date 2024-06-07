@@ -45,7 +45,7 @@ export const Pred = () => {
         // @ts-ignore
         const selectedProduct = products?.data.data.find((product) => product.name === value);
         if (selectedProduct) {
-            formProps.form.setFieldsValue({ code: selectedProduct.code });
+            formProps.form.setFieldsValue({ product_code: selectedProduct.code });
         }
     };
 
@@ -80,10 +80,10 @@ export const Pred = () => {
                     <Col span={10}>
                         <Form.Item
                             label="Product Code"
-                            name={["code"]}
+                            name={["product_code"]}
                             rules={[{ required: true }]}
                         >
-                            <Input  readOnly value={selectedProduct.code} />
+                            <Input readOnly value={selectedProduct.code} />
                         </Form.Item>
                     </Col>
                 </Row>

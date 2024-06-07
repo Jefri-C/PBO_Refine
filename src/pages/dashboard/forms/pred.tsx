@@ -97,7 +97,7 @@ export const Pred = () => {
         </Form>
             {successMessage && (
                 <Card style={{margin: "16px"}}>
-                    <p>Predicted Sales for this Product : </p>
+                    <p>Predicted Sale Quantity for this Product : </p>
                     {successMessage}
                 </Card>
             )}

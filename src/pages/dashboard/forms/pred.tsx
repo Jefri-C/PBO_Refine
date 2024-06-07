@@ -3,6 +3,7 @@ import { Button, Card, Col, DatePicker, Form, Input, Row, Select } from "antd";
 import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";  
 import { useState } from "react";
+import { useList } from '@refinedev/core';
 
 export const Pred = () => {
     const { formProps, saveButtonProps } = useForm({
@@ -22,6 +23,7 @@ export const Pred = () => {
     });
 
     const [successMessage, setSuccessMessage] = useState("");
+    const [selectedProduct, setSelectedProduct] = useState({}); // Add this state to store the selected product
 
     const { selectProps: productSelectProps } = useSelect({
         resource: "product",
@@ -32,6 +34,20 @@ export const Pred = () => {
             select: (response) => response.data,
         },
     });
+
+    const { data: products, isLoading } = useList({
+        resource: "product",
+    });
+
+    const handleProductChange = (value) => {
+        if (isLoading) return; // Wait for the products list to be loaded
+
+        // @ts-ignore
+        const selectedProduct = products?.data.data.find((product) => product.name === value);
+        if (selectedProduct) {
+            formProps.form.setFieldsValue({ code: selectedProduct.code });
+        }
+    };
 
     return (
     <div>
@@ -45,31 +61,32 @@ export const Pred = () => {
             >
                 <DatePicker />
             </Form.Item>  
-            <Row gutter={24}>
-                <Col span={14}>
-                    <Form.Item
-                        label="Product"
-                        name={["name"]}
-                        rules={[{ required: true }]}
-                    >
-                        <Select
-                            {...productSelectProps}
-                            onSearch={undefined}
-                            filterOption={true}
-                            optionFilterProp="label"
-                        />
-                    </Form.Item>
-                </Col>
-                <Col span={10}>
-                    <Form.Item
-                        label="Product Code"
-                        name={["product_code"]}
-                        rules={[{ required: true }]}
-                    >
-                        <Input />
-                    </Form.Item>
-                </Col>
-            </Row>
+                <Row gutter={24}>
+                    <Col span={14}>
+                        <Form.Item
+                            label="Product"
+                            name={["name"]}
+                            rules={[{ required: true }]}
+                        >
+                            <Select
+                                {...productSelectProps}
+                                onSearch={undefined}
+                                filterOption={true}
+                                optionFilterProp="label"
+                                onChange={handleProductChange} // Add this event handler
+                            />
+                        </Form.Item>
+                    </Col>
+                    <Col span={10}>
+                        <Form.Item
+                            label="Product Code"
+                            name={["code"]}
+                            rules={[{ required: true }]}
+                        >
+                            <Input  readOnly value={selectedProduct.code} />
+                        </Form.Item>
+                    </Col>
+                </Row>
             <Row gutter={24}>
                 <Col span={12}>
                     <Form.Item

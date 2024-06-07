@@ -24,6 +24,8 @@ export const ProductShow = () => {
             <NumberField value={record?.id ?? ""} />
             <Title level={5}>{"Name"}</Title>
             <TextField value={record?.name} />
+            <Title level={5}>{"Code"}</Title>
+            <TextField value={record?.code} />
             <Title level={5}>{"Category"}</Title>
             <TextField value={categoryData?.data?.data.name ?? "Loading..."} />
             <Title level={5}>{"Price"}</Title>

@@ -1,5 +1,5 @@
 import { Create, useForm, useSelect } from "@refinedev/antd";
-import { Form, Input, Select } from "antd";
+import { Col, Form, Input, Row, Select } from "antd";
 import { useNavigate } from "react-router-dom";
 
 export const ProductCreate = () => {
@@ -46,6 +46,8 @@ export const ProductCreate = () => {
                 >
                     <Select {...categorySelectProps} />
                 </Form.Item>
+                <Row gutter={24}>
+                    <Col span={12}>
                 <Form.Item
                     label={"Name"}
                     name={["name"]}
@@ -57,6 +59,21 @@ export const ProductCreate = () => {
                 >
                     <Input />
                 </Form.Item>
+                </Col>
+                <Col span={12}>
+                        <Form.Item
+                            label={"Code"}
+                            name={["code"]}
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                </Col>
+                </Row>
                 <Form.Item
                     label={"Price"}
                     name={["price"]}

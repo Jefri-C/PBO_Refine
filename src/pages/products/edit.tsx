@@ -1,5 +1,5 @@
 import { Edit, useForm, useSelect } from "@refinedev/antd";
-import { Form, Input, Select, notification } from "antd";
+import { Col, Form, Input, Row, Select, notification } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 import { useCustomMutation } from "@refinedev/core";
 
@@ -72,7 +72,7 @@ export const ProductEdit = () => {
 
     return (
         <Edit saveButtonProps={{ ...saveButtonProps, onClick: () => formProps.form.submit() }}>
-            <Form {...formProps} layout="vertical" initialValues={{ id: extractedData.id, name: extractedData.name, price: extractedData.price, stock: extractedData.stock, category_id: extractedData.category_id }} onFinish={handleOnFinish}>
+            <Form {...formProps} layout="vertical" initialValues={{ id: extractedData.id, name: extractedData.name, code: extractedData.code, price: extractedData.price, stock: extractedData.stock, category_id: extractedData.category_id }} onFinish={handleOnFinish}>
                 <Form.Item
                     label="ID"
                     name="id"
@@ -96,17 +96,34 @@ export const ProductEdit = () => {
                 >
                     <Select {...categorySelectProps} />
                 </Form.Item>
-                <Form.Item
-                    label="Name"
-                    name="name"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
+                <Row gutter={24}>
+                    <Col span={12}>
+                        <Form.Item
+                            label={"Name"}
+                            name={["name"]}
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                    </Col>
+                    <Col span={12}>
+                        <Form.Item
+                            label={"Code"}
+                            name={["code"]}
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                    </Col>
+                </Row>
                 <Form.Item
                     label="Price"
                     name="price"

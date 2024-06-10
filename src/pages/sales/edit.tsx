@@ -56,7 +56,8 @@ export const SaleEdit = () => {
 
     const { selectProps: productSelectProps } = useSelect({
         resource: "product",
-        optionLabel: "name",
+        // @ts-ignore
+        optionLabel: (item) => `${item.name} ${item.code}`,
         optionValue: "id",
         queryOptions: {
             // @ts-ignore

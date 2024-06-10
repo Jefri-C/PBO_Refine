@@ -1,6 +1,6 @@
 import { Create, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select, DatePicker, Button, Row, Col } from "antd";
-import { useMany } from "@refinedev/core";
+import { useList, useMany } from "@refinedev/core";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -27,13 +27,15 @@ export const SaleCreate = () => {
     });
     const { selectProps: productSelectProps } = useSelect({
         resource: "product",
-        optionLabel: "name",
+        // @ts-ignore
+        optionLabel: (item) => `${item.name} ${item.code}`,
         optionValue: "id",
         queryOptions: {
             // @ts-ignore
             select: (response) => response.data, // Extract only the data array
         },
     });
+
 
 
     const [salesDetails, setSalesDetails] = useState([{ key: Date.now() }]);
@@ -109,6 +111,15 @@ export const SaleCreate = () => {
                                 <Select {...productSelectProps} onSearch={undefined}
                                     filterOption={true}
                                     optionFilterProp="label" />
+                            </Form.Item>
+                        </Col>
+                        <Col span={4}>
+                            <Form.Item
+                                label="Code"
+                                name={["details", index, "product_code"]}
+                                rules={[{ required: true }]}
+                            >
+                                <Input readOnly/>
                             </Form.Item>
                         </Col>
                         <Col span={4}>

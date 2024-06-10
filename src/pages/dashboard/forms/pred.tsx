@@ -41,7 +41,6 @@ export const Pred = () => {
 
     const handleProductChange = (value) => {
         if (isLoading) return; // Wait for the products list to be loaded
-
         // @ts-ignore
         const selectedProduct = products?.data.data.find((product) => product.name === value);
         if (selectedProduct) {

@@ -115,15 +115,6 @@ export const SaleCreate = () => {
                         </Col>
                         <Col span={4}>
                             <Form.Item
-                                label="Code"
-                                name={["details", index, "product_code"]}
-                                rules={[{ required: true }]}
-                            >
-                                <Input readOnly/>
-                            </Form.Item>
-                        </Col>
-                        <Col span={4}>
-                            <Form.Item
                                 label="Quantity"
                                 name={["details", index, "quantity"]}
                                 rules={[{ required: true }]}

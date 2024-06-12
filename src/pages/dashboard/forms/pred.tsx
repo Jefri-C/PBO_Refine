@@ -1,5 +1,5 @@
 import { useForm, useSelect } from "@refinedev/antd";
-import { Button, Card, Col, DatePicker, Form, Input, Row, Select } from "antd";
+import { Button, Card, Col, DatePicker, Form, Input, InputNumber, Row, Select } from "antd";
 import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";  
 import { useState } from "react";
@@ -87,15 +87,15 @@ export const Pred = () => {
                     </Col>
                 </Row>
             <Row gutter={24}>
-                <Col span={12}>
-                    <Form.Item
-                        label="Customer Age"
-                        name={["age"]}
-                        rules={[{ required: true }]}
-                    >
-                        <Input type="number" />
-                    </Form.Item>
-                </Col>
+                    <Col span={5}>
+                        <Form.Item
+                            label="Customer Age"
+                            name="age"
+                            rules={[{ required: true, type: "number", max: 99, message: "Age must be a number and at most 2 digits" }]}
+                        >
+                            <InputNumber max={99} />
+                        </Form.Item>
+                    </Col>
                 <Col span={12}>
                     <Form.Item
                         label="Payment Method"

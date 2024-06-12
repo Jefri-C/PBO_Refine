@@ -140,7 +140,7 @@ export const DashboardPage: React.FC = () => {
         },
     });
 
-    const { data: productRankingData } = useCustom<{ data: { product_name:String, quantity: number }[] }>({
+    const { data: productRankingData } = useCustom<{ data: { product_name: string, quantity: number, id: string }[] }>({
         url: `${API_URL}/api/sale`,
         method: "get",
     });
@@ -155,21 +155,20 @@ export const DashboardPage: React.FC = () => {
 
     const totalQuantities = detailsData.reduce((acc, item) => {
         if (acc[item.product_name]) {
-            acc[item.product_name] += item.quantity;
+            acc[item.product_name].quantity += item.quantity;
         } else {
-            acc[item.product_name] = item.quantity;
+            acc[item.product_name] = { quantity: item.quantity, id: item.product_id };
         }
         return acc;
     }, {});
 
     const rankedProducts = Object.entries(totalQuantities)
-        .map(([product_name, quantity]) => ({ product_name, quantity }))
+        .map(([product_name, { quantity, id }]) => ({ product_name, quantity, id }))
         // @ts-ignore
         .sort((a, b) => b.quantity - a.quantity)
         .slice(0, 5);
-    
-    console.log(rankedProducts);
 
+    console.log(rankedProducts);
 
 
 const todayRevenue = todayRevenueData?.data.data.reduce((sum, item) => sum += item.total_amount, 0) || 0;
@@ -406,6 +405,12 @@ return (
                                         }}>
                                             {product.product_name}
                                         </div>
+                                        {/* <div style={{
+                                            fontSize: "18px",
+                                            fontWeight: "light"
+                                        }}>
+                                            {product.code}
+                                        </div> */}
                                         <div style={{
                                             fontSize: "16px",
                                             color: "gray"
